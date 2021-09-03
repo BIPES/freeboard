@@ -1,0 +1,196 @@
+{
+	"version": 1,
+	"allow_edit": true,
+	"plugins": [],
+	"panes": [
+		{
+			"title": "3 eixos",
+			"width": 1,
+			"row": {
+				"3": 1
+			},
+			"col": {
+				"3": 1
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "slider_plugin",
+					"settings": {
+						"title": "Base - Eixo 1",
+						"min": "0",
+						"max": "100",
+						"url": "http://bipes.net.br/easymqtt/publish.php?session=vn28pd&topic=Eixo1&value=%VALUE%"
+					}
+				},
+				{
+					"type": "slider_plugin",
+					"settings": {
+						"title": "Braço 1 - Eixo 2",
+						"min": "0",
+						"max": "360",
+						"url": "http://bipes.net.br/easymqtt/publish.php?session=vn28pd&topic=Eixo2&value=%VALUE%"
+					}
+				},
+				{
+					"type": "slider_plugin",
+					"settings": {
+						"title": "Guara - Eixo 3",
+						"min": "0",
+						"max": "100",
+						"url": "http://bipes.net.br/easymqtt/publish.php?session=vn28pd&topic=Eixo3&value=%VALUE%"
+					}
+				}
+			]
+		},
+		{
+			"title": "Câmera",
+			"width": 1,
+			"row": {
+				"3": 9
+			},
+			"col": {
+				"3": 1
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "html",
+					"settings": {
+						"html": "<BR><center><img src=http://uc.bipes.net.br:8090/cgi-bin/mjpg/video.cgi?subtype=1 width=260></center>",
+						"height": 4
+					}
+				}
+			]
+		},
+		{
+			"title": "Eixo 1",
+			"width": 1,
+			"row": {
+				"3": 1
+			},
+			"col": {
+				"3": 2
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "pointer",
+					"settings": {
+						"direction": "datasources[\"Eixo1\"][\"result\"][0][\"data\"]",
+						"value_text": "datasources[\"Eixo1\"][\"result\"][0][\"data\"]",
+						"units": "graus"
+					}
+				}
+			]
+		},
+		{
+			"title": "Eixo 2",
+			"width": 1,
+			"row": {
+				"3": 1
+			},
+			"col": {
+				"3": 3
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "gauge",
+					"settings": {
+						"title": "Eixo 2",
+						"value": "datasources[\"Eixo2\"][\"result\"][0][\"data\"]",
+						"units": "graus",
+						"min_value": 0,
+						"max_value": "360"
+					}
+				},
+				{
+					"type": "slider_plugin",
+					"settings": {
+						"title": "Eixo 2",
+						"min": "0",
+						"max": "360",
+						"url": "http://bipes.net.br/easymqtt/publish.php?session=vn28pd&topic=Eixo2&value=%VALUE%"
+					}
+				}
+			]
+		},
+		{
+			"title": "ArmDs7",
+			"width": 1,
+			"row": {
+				"3": 11
+			},
+			"col": {
+				"3": 2
+			},
+			"col_width": 2,
+			"widgets": [
+				{
+					"type": "html",
+					"settings": {
+						"html": "<center>Saiba mais: <a href=https://mauriciodgsantos.wixsite.com/easyds/armds7 target=_blank>https://mauriciodgsantos.wixsite.com/easyds/armds7</a><img src=/ArmDs7.png></center>",
+						"height": 7
+					}
+				}
+			]
+		},
+		{
+			"title": "Rotação com mouse",
+			"width": 1,
+			"row": {
+				"3": 19
+			},
+			"col": {
+				"3": 1
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "html",
+					"settings": {
+						"html": "<div class=\"drop\">\n    <div>\n        <center><img src=\"http://bipes.net.br/ArmDs7.png\" width=150></center>\n    </div>\n</div>\n        \n        <script>\n            $(document).ready(function() {\n  // the same as yours.\n  function rotateOnMouse(e, pw) {\n      var offset = pw.offset();\n      var center_x = (offset.left) + ($(pw).width() / 2);\n      var center_y = (offset.top) + ($(pw).height() / 2);\n      var mouse_x = e.pageX;\n      var mouse_y = e.pageY;\n      var radians = Math.atan2(mouse_x - center_x, mouse_y - center_y);\n      var degree = (radians * (180 / Math.PI) * -1) + 100;\n      //            window.console.log(\"de=\"+degree+\",\"+radians);\n      $(pw).css('-moz-transform', 'rotate(' + degree + 'deg)');\n      $(pw).css('-webkit-transform', 'rotate(' + degree + 'deg)');\n      $(pw).css('-o-transform', 'rotate(' + degree + 'deg)');\n      $(pw).css('-ms-transform', 'rotate(' + degree + 'deg)');\n  }\n\n  $('.drop div img').mousedown(function(e) {\n    e.preventDefault(); // prevents the dragging of the image.\n    $(document).bind('mousemove.rotateImg', function(e2) {\n      rotateOnMouse(e2, $('.drop div img'));\n    });\n  });\n\n  $(document).mouseup(function(e) {\n    $(document).unbind('mousemove.rotateImg');\n  });\n});\n</script>",
+						"height": 4,
+						"animate": true,
+						"min": "0",
+						"max": "100"
+					}
+				}
+			]
+		}
+	],
+	"datasources": [
+		{
+			"name": "Eixo1",
+			"type": "BIPES EasyMQTT",
+			"settings": {
+				"session": "vn28pd",
+				"topic": "Eixo1",
+				"refresh": 1,
+				"method": "GET"
+			}
+		},
+		{
+			"name": "Eixo2",
+			"type": "BIPES EasyMQTT",
+			"settings": {
+				"session": "vn28pd",
+				"topic": "Eixo2",
+				"refresh": 1,
+				"method": "GET"
+			}
+		},
+		{
+			"name": "Eixo3",
+			"type": "BIPES EasyMQTT",
+			"settings": {
+				"session": "vn28pd",
+				"topic": "Eixo3",
+				"refresh": 1,
+				"method": "GET"
+			}
+		}
+	],
+	"columns": 3
+}

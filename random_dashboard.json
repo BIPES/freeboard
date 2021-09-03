@@ -1,0 +1,105 @@
+{
+	"version": 1,
+	"allow_edit": true,
+	"plugins": [],
+	"panes": [
+		{
+			"title": "Text title",
+			"width": 1,
+			"row": {
+				"3": 9
+			},
+			"col": {
+				"3": 1
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "text_widget",
+					"settings": {
+						"title": "Label 1",
+						"size": "regular",
+						"value": "datasources[\"Random2\"]",
+						"sparkline": true,
+						"animate": true,
+						"units": "things"
+					}
+				}
+			]
+		},
+		{
+			"title": "Chart",
+			"width": 1,
+			"row": {
+				"3": 1
+			},
+			"col": {
+				"3": 2
+			},
+			"col_width": 2,
+			"widgets": [
+				{
+					"type": "highcharts-timeseries",
+					"settings": {
+						"timeframe": 60,
+						"blocks": 4,
+						"chartType": "spline",
+						"title": "Graph",
+						"xaxis": "{\"title\":{\"text\" : \"Time\"}, \"type\": \"datetime\", \"floor\":0}",
+						"yaxis": "{\"title\":{\"text\" : \"Values\"}, \"minorTickInterval\":\"auto\", \"floor\":0}",
+						"series1": "datasources[\"Random1\"]",
+						"series1label": "Random 1",
+						"series2": "datasources[\"Random2\"]",
+						"series2label": "Random 2"
+					}
+				}
+			]
+		},
+		{
+			"title": "Gauge 1",
+			"width": 1,
+			"row": {
+				"3": 1
+			},
+			"col": {
+				"3": 1
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "gauge",
+					"settings": {
+						"title": "Random1 test",
+						"value": "datasources[\"Random1\"]",
+						"units": "things",
+						"min_value": "30",
+						"max_value": "20"
+					}
+				}
+			]
+		}
+	],
+	"datasources": [
+		{
+			"name": "Random1",
+			"type": "Random Data Source",
+			"settings": {
+				"max": "30",
+				"min": "20",
+				"decimalPlates": "4",
+				"refresh": 5
+			}
+		},
+		{
+			"name": "Random2",
+			"type": "Random Data Source",
+			"settings": {
+				"max": "100",
+				"min": "0",
+				"decimalPlates": "2",
+				"refresh": 5
+			}
+		}
+	],
+	"columns": 3
+}
