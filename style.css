@@ -1,0 +1,11 @@
+section#freeboard > iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+nav a#freeboard:before {
+  background-position: left calc(-1.5rem*2) top;
+}
+nav a#freeboard.on:before {
+  background-position: left calc(-1.5rem*2) bottom;
+}
